@@ -6,7 +6,6 @@ import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import Header from "@/components/Header";
 import SyncUserWithConvex from "@/components/SyncUserWithConvex";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,9 +15,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -35,13 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-
         <ConvexClientProvider>
-        <ClerkProvider>
-        <Header/>
-        <SyncUserWithConvex/>
-        {children}
-        </ClerkProvider>
+          <ClerkProvider>
+            <Header />
+            <SyncUserWithConvex />
+            {children}
+          </ClerkProvider>
         </ConvexClientProvider>
       </body>
     </html>
