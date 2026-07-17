@@ -90,4 +90,113 @@
     "eventDate": 1727222400000,
     "userId": "user_2iRXPsQAaVYYfAQ2XLQXemvJrzI"
   }
+  ,
+  {
+    "name": "FIFA World Cup Qualifier: Brazil vs Argentina",
+    "description": "A high-stakes South American football showdown between two giants.",
+    "price": 240.00,
+    "totalTickets": 65000,
+    "location": "Maracanã Stadium, Rio de Janeiro",
+    "eventDate": 1786822200000,
+    "userId": "user_2bFMHkGxZPWVVyJ5QEJQxfsCkxB"
+  },
+  {
+    "name": "FIFA Club World Cup Final",
+    "description": "Watch the best club side in the world battle for the title.",
+    "price": 320.00,
+    "totalTickets": 70000,
+    "location": "MetLife Stadium, New Jersey",
+    "eventDate": 1789063200000,
+    "userId": "user_2dOPKmMyZRXXazL7SGLSzhsEmzD"
+  },
+  {
+    "name": "Cricket: India vs Australia T20 Series Opener",
+    "description": "A packed night of power hitting and fast bowling in a blockbuster opener.",
+    "price": 180.00,
+    "totalTickets": 42000,
+    "location": "Wankhede Stadium, Mumbai",
+    "eventDate": 1791208800000,
+    "userId": "user_2eRTLnPxYQWWbzM8THMTaisFnzE"
+  },
+  {
+    "name": "Cricket: England vs Pakistan ODI",
+    "description": "Classic rivalry cricket under lights with world-class talent on display.",
+    "price": 145.00,
+    "totalTickets": 28000,
+    "location": "Lord's Cricket Ground, London",
+    "eventDate": 1795291200000,
+    "userId": "user_2fQUMpNzXSVVczN9UINUbjsGozF"
+  },
+  {
+    "name": "Coldplay Live 2026",
+    "description": "An arena-sized night of anthems, lights, and sing-alongs.",
+    "price": 210.00,
+    "totalTickets": 22000,
+    "location": "Wembley Stadium, London",
+    "eventDate": 1797613200000,
+    "userId": "user_2gPVNqOyYTWWdzO0VJOVcktHpzG"
+  },
+  {
+    "name": "Adele: One Night Only",
+    "description": "A stripped-back concert featuring Adele's biggest ballads.",
+    "price": 275.00,
+    "totalTickets": 18000,
+    "location": "Caesars Palace, Las Vegas",
+    "eventDate": 1799785800000,
+    "userId": "user_2hQWOrPzZUXXezP1WKPWdluIqzH"
+  },
+  {
+    "name": "Taylor Swift: Midnight Encore",
+    "description": "A special encore concert with fan-favorite tracks and surprise performances.",
+    "price": 350.00,
+    "totalTickets": 60000,
+    "location": "SoFi Stadium, Los Angeles",
+    "eventDate": 1802620800000,
+    "userId": "user_2iRXPsQAaVYYfAQ2XLQXemvJrzI"
+  },
+  {
+    "name": "Champions League Final 2027",
+    "description": "Europe's biggest club football night with trophy dreams on the line.",
+    "price": 410.00,
+    "totalTickets": 75000,
+    "location": "Atatürk Olympic Stadium, Istanbul",
+    "eventDate": 1805569200000,
+    "userId": "user_2bFMHkGxZPWVVyJ5QEJQxfsCkxB"
+  },
+  {
+    "name": "Cricket World Cup Semi-Final",
+    "description": "A pressure-filled knockout match between two elite cricket nations.",
+    "price": 260.00,
+    "totalTickets": 50000,
+    "location": "Melbourne Cricket Ground, Melbourne",
+    "eventDate": 1807448400000,
+    "userId": "user_2dOPKmMyZRXXazL7SGLSzhsEmzD"
+  },
+  {
+    "name": "Movie Premiere: Dune Part Three",
+    "description": "A red-carpet premiere for the next epic chapter in the Dune saga.",
+    "price": 95.00,
+    "totalTickets": 2500,
+    "location": "Dolby Theatre, Los Angeles",
+    "eventDate": 1809790200000,
+    "userId": "user_2eRTLnPxYQWWbzM8THMTaisFnzE"
+  },
+  {
+    "name": "Movie Night: Avatar 4 Fan Screening",
+    "description": "An exclusive fan screening with behind-the-scenes previews and giveaways.",
+    "price": 78.00,
+    "totalTickets": 3200,
+    "location": "AMC Lincoln Square, New York",
+    "eventDate": 1813430700000,
+    "userId": "user_2fQUMpNzXSVVczN9UINUbjsGozF"
+  },
+  {
+    "name": "FIFA Women's World Cup Showcase",
+    "description": "A celebration match featuring top women's national teams.",
+    "price": 190.00,
+    "totalTickets": 55000,
+    "location": "Sydney Olympic Park Stadium, Sydney",
+    "eventDate": 1816456500000,
+    "userId": "user_2gPVNqOyYTWWdzO0VJOVcktHpzG"
+  }
 ]
