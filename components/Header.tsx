@@ -40,22 +40,29 @@ function Header() {
         </div>
 
         <div className='hidden lg:block ml-auto'>
-          
-        <SignedIn>
-        <div className='flex items-center gap-4'>
-          <Link 
-        href='/seller'>
-            <button className='bg-blue-600 text-white px-3 py-1.5 text-sm hover:bg-blue-700 transition rounded-lg'>Sell Tickets</button>
-        </Link>
-        <Link 
-        href='/tickets'>
-            <button className="bg-gray-100 text-gray-800 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition border border-gray-200">My Tickets</button>
-        </Link>
-            <UserButton />
-
+          <SignedIn>
+            <div className='flex items-center gap-4'>
+              <Link href='/seller'>
+                <button className='bg-blue-600 text-white px-3 py-1.5 text-sm hover:bg-blue-700 transition rounded-lg font-medium'>
+                  Sell Tickets
+                </button>
+              </Link>
+              <Link href='/tickets'>
+                <button className="bg-gray-100 text-gray-800 px-3 py-1.5 text-sm rounded-lg hover:bg-gray-200 transition border border-gray-200 font-medium">
+                  My Tickets
+                </button>
+              </Link>
+              <UserButton />
             </div>
-            </SignedIn>
-            </div>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="bg-gray-100 text-gray-800 px-3 py-1.5 text-sm rounded-lg hover:bg-gray-200 transition border border-gray-300 font-medium">
+                Sign In
+              </button>
+            </SignInButton>
+          </SignedOut>
+        </div>
 
 
         </div>
