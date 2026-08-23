@@ -1,4 +1,4 @@
-# 🎟️ Ticketr - Real-Time Event Ticketing & Queue Platform
+# 🎟️ Eventra - Real-Time Event Ticketing & Queue Platform
 
 **Ticketr** is a full-stack, real-time event ticketing and queue management platform built with Next.js 15, Convex, Clerk Authentication, and Stripe Connect. It features a fair waiting-list queue system with time-limited ticket offers, instant user sync, automated background task scheduling, seller payout routing, and automated event refunds.
 
