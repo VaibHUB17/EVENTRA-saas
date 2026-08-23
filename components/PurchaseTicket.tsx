@@ -7,16 +7,20 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useEffect, useState } from "react";
 import { Ticket } from "lucide-react";
 import ReleaseTicket from "./ReleaseTicket";
+import { createStripeCheckoutSession } from "@/actions/CreateStripeCheckoutSession";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
   const { user } = useUser();
+  const router = useRouter();
   const QueuePosition = useQuery(api.waitingList.getQueuePosition, {
     eventId,
     userId: user?.id || "",
   });
 
   const [timeRemaining, setTimeRemaining] = useState<string>();
-  const [isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const offerExpireAt = QueuePosition?.offerExpiresAt ?? 0;
   const isExpired = Date.now() > offerExpireAt;
@@ -34,7 +38,7 @@ function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
 
       if (minutes > 0) {
         setTimeRemaining(
-          `${minutes} minute${minutes === 1 ? "" : "s"} ${seconds} second${seconds === 1 ? "" : "s"}`
+          `${minutes} minute${minutes === 1 ? "" : "s"} ${seconds} second${seconds === 1 ? "" : "s"}`,
         );
       } else {
         setTimeRemaining(`${seconds} second${seconds === 1 ? "" : "s"}`);
@@ -48,7 +52,24 @@ function PurchaseTicket({ eventId }: { eventId: Id<"events"> }) {
   }, [offerExpireAt, isExpired]);
 
   // create Stripe checkout...
-  const handlePurchase = async () => {};
+  const handlePurchase = async () => {
+    if (!user) return;
+
+    try {
+      setIsLoading(true);
+      const { sessionUrl } = await createStripeCheckoutSession({
+        eventId,
+      });
+      if (sessionUrl) {
+        router.push(sessionUrl);
+      }
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+      toast.error("Failed to create checkout session. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   if (!user || !QueuePosition || QueuePosition.status !== "offered") {
     return null;
