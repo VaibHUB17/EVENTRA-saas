@@ -2,19 +2,14 @@
 
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { api } from "@/convex/_generated/api";
-import { ConvexHttpClient } from "convex/browser";
-
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error("STRIPE_SECRET_KEY is not set");
-}
-
-if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
-  throw new Error("NEXT_PUBLIC_CONVEX_URL is not set");
-}
-
-const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL);
+import { getConvexClient } from "@/lib/convex";
 
 export async function createStripeConnectCustomer() {
+  const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
+  if (!secretKey) {
+    throw new Error("STRIPE_SECRET_KEY is not defined");
+  }
+
   const { userId } = await auth();
 
   if (!userId) {
@@ -22,6 +17,15 @@ export async function createStripeConnectCustomer() {
   }
 
   const clerkUser = await currentUser();
+
+  const convex = getConvexClient();
+
+  const displayName =
+    `${clerkUser?.firstName ?? ""} ${clerkUser?.lastName ?? ""}`.trim() ||
+    clerkUser?.username ||
+    "Seller";
+
+  const contactEmail = clerkUser?.emailAddresses[0]?.emailAddress || "";
 
   // Check if user already has a connect account
   let existingUser = await convex.query(api.users.getUserById, {
@@ -31,11 +35,8 @@ export async function createStripeConnectCustomer() {
   if (!existingUser) {
     await convex.mutation(api.users.updateUser, {
       userId,
-      name:
-        `${clerkUser?.firstName ?? ""} ${clerkUser?.lastName ?? ""}`.trim() ||
-        clerkUser?.username ||
-        "Seller",
-      email: clerkUser?.emailAddresses[0]?.emailAddress || "",
+      name: displayName,
+      email: contactEmail,
     });
 
     existingUser = await convex.query(api.users.getUserById, {
@@ -49,25 +50,18 @@ export async function createStripeConnectCustomer() {
     return { account: existingStripeConnectId };
   }
 
-  const displayName =
-    `${clerkUser?.firstName ?? ""} ${clerkUser?.lastName ?? ""}`.trim() ||
-    clerkUser?.username ||
-    "Seller";
-
-  const contactEmail = clerkUser?.emailAddresses[0]?.emailAddress || "";
-
   // Create a connected account with Accounts v2.
   const accountResponse = await fetch(
     "https://api.stripe.com/v2/core/accounts",
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}`,
+        Authorization: `Bearer ${secretKey}`,
         "Content-Type": "application/json",
         "Stripe-Version": "2026-06-24.dahlia",
       },
       body: JSON.stringify({
-        contact_email: contactEmail,
+        ...(contactEmail ? { contact_email: contactEmail } : {}),
         display_name: displayName,
         identity: {
           country: "US",
@@ -95,10 +89,11 @@ export async function createStripeConnectCustomer() {
 
   const accountData = (await accountResponse.json()) as {
     id?: string;
-    error?: { message?: string };
+    error?: { message?: string; code?: string };
   };
 
   if (!accountResponse.ok || !accountData.id) {
+    console.error("Stripe Accounts v2 creation failed:", accountData);
     throw new Error(
       accountData.error?.message ||
         "Failed to create Stripe connected account.",

@@ -37,10 +37,15 @@ export const updateOrCreateUserStripeConnectId = mutation({
     console.log("updateOrCreateUserStripeConnectId found user:", user);
 
     if (!user) {
-      throw new Error(`User not found for userId: ${args.userId}`);
+      await ctx.db.insert("users", {
+        userId: args.userId,
+        name: "Seller",
+        email: "",
+        stripeConnectId: args.stripeConnectId,
+      });
+    } else {
+      await ctx.db.patch(user._id, { stripeConnectId: args.stripeConnectId });
     }
-
-    await ctx.db.patch(user._id, { stripeConnectId: args.stripeConnectId });
   },
 });
 

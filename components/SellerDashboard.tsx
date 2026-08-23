@@ -124,13 +124,15 @@ export default function SellerDashboard() {
               <button
                 onClick={async () => {
                   setAccountCreatePending(true);
+                  setError(false);
                   try {
                     await createStripeConnectCustomer();
-                  } catch (error) {
+                  } catch (error: any) {
                     console.error(
                       "Error creating Stripe Connect account:",
                       error,
                     );
+                    setError(true);
                   } finally {
                     setAccountCreatePending(false);
                   }
