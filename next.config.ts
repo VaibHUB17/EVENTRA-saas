@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'first-anteater-634.convex.cloud',
       },
+      {
+        protocol: 'https',
+        hostname: 'tremendous-badger-747.convex.cloud',
+      },
     ],
   },
 };
