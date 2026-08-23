@@ -22,7 +22,7 @@
 
 The application follows a modern serverless architecture where Next.js handles server rendering, server actions, and API webhooks, while Convex acts as the real-time database and task scheduler backend.
 
-```mermaid
+
 graph TD
     Client["💻 Client (React 19 / Next.js)"]
     Clerk["🔐 Clerk Auth"]
@@ -39,9 +39,7 @@ graph TD
     NextServer -->|Mutates State (purchaseTicket)| ConvexDB
     ConvexDB -->|Schedules Expirations| ConvexScheduler
     ConvexScheduler -->|Triggers Expiration & Queue Reprocessing| ConvexDB
-```
 
----
 
 ## 🔄 Core Application Flows & Architecture
 
