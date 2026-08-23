@@ -127,7 +127,7 @@ export default function SellerDashboard() {
                   setError(false);
                   try {
                     await createStripeConnectCustomer();
-                  } catch (error: any) {
+                  } catch (error) {
                     console.error(
                       "Error creating Stripe Connect account:",
                       error,
