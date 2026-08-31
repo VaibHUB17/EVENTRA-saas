@@ -12,6 +12,7 @@ import { CalendarDays, MapPin, Ticket, Users } from "lucide-react";
 import EventCard from "@/components/EventCard";
 import { Button } from "@/components/ui/button";
 import JoinQueue from "@/components/JoinQueue";
+import RecommendedEvents from "@/components/RecommendedEvents";
 
 function Eventpage() {
   const { user } = useUser();
@@ -33,7 +34,7 @@ function Eventpage() {
     );
   }
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-12">
       {/* Event details */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -85,7 +86,7 @@ function Eventpage() {
                       <span className="text-sm font-medium">Price</span>
                     </div>
                     <p className="text-gray-900">
-                     ₹{event.price.toFixed(2)}
+                      ₹{event.price.toFixed(2)}
                     </p>
                   </div>
                   <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
@@ -94,7 +95,7 @@ function Eventpage() {
                       <span className="text-sm font-medium">Availability</span>
                     </div>
                     <p className="text-gray-900">
-                     {availability.totalTickets - availability.purchasedCount}{" "}/{availability.totalTickets} left
+                      {availability.totalTickets - availability.purchasedCount}{" "}/{availability.totalTickets} left
                     </p>
                   </div>
                 </div>
@@ -102,7 +103,7 @@ function Eventpage() {
                 <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-blue-900 mb-2">Event Information</h3>
                   <ul className="space-y-2 text-blue-700">
-                     <li>• Please arrive 30 minutes before the event starts</li>
+                    <li>• Please arrive 30 minutes before the event starts</li>
                     <li>• Tickets are non-refundable</li>
                     <li>• Age restriction: 18+</li>
                   </ul>
@@ -128,9 +129,13 @@ function Eventpage() {
             </div>
           </div>
         </div>
+
+        {/* Recommended Events Section */}
+        <RecommendedEvents currentEventId={params.id as Id<"events">} />
       </div>
     </div>
   );
 }
 
 export default Eventpage;
+
